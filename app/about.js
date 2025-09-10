@@ -1,0 +1,12 @@
+import { Button ,View, Text } from "react-native";
+
+export default function AboutScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#fff", }}>
+      <Text>About  Screen</Text>
+      <Text>About  Screen</Text>
+      <Text>About  Screen</Text>
+      {/* <Button title="click me 😁"/> */}
+    </View>
+  );
+}
