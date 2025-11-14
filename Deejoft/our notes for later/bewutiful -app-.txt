@@ -1,0 +1,82 @@
+import React from "react";
+import { Provider } from 'react-redux';
+import { store } from './redux-example/store';
+import {View, Text, StyleSheet, StatusBar, Button} from "react-native";
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './redux-example/counterSlice';
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+import SignUp from "./assignment/sign-up";
+import SignIn from "./assignment/sign-in";
+import HomeScreen from "./assignment/Home-screen";
+
+
+const Stack = createNativeStackNavigator();
+
+function CounterApp() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontSize: 24 }}>Count: {count}</Text>
+      <Button title="Increment" onPress={() => dispatch(increment())} />
+      <Button title="Decrement" onPress={() => dispatch(decrement())} />
+    </View>
+  );
+}
+
+export default function App(){
+  return(
+    <>
+    <Provider store={store}>
+
+      <NavigationContainer>
+        <Stack.Navigator
+        initialRouteName="Log In"
+      
+        screenOptions={{
+          headerShown: true,
+          headerStyle: {backgroundColor: '#00cfcf', },
+          headerTitleAlign: "center",
+          headerTitleStyle: {fontWeight: 'bold', fontSize: 40, fontFamily: "time", color: "#ffffff"},
+          headerTintColor: "#fff",
+        }}>
+
+          <Stack.Screen name="New Account" component={SignUp} />
+          <Stack.Screen name="Log In" component={SignIn} />
+          <Stack.Screen name="Home Screen" component={HomeScreen} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="Counter" component={CounterApp} />
+
+      {/* <CounterApp /> */}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+    </>
+  )
+}
+
+const styles = StyleSheet.create({
+  container:{
+
+  },
+})
+
+// import { AppRegistry } from 'react-native';
+// import React from 'react';
+// import App from './App';
+// import { name as appName } from './app.json';
+// import { store } from './redux-example/store';
+// import { Provider } from 'react-redux';
+
+// const ReduxExample = () => (
+//   <Provider store={store}>
+//     <App />
+//   </Provider>
+// );
+
+// AppRegistry.registerComponent(appName, () => ReduxExample);

@@ -1,47 +1,109 @@
-// import { StatusBar } from 'expo-status-bar';
-// import {  Button ,Image, StyleSheet, Text, View } from 'react-native';
-// import { useState } from 'react';
+import React from "react"
+import { StyleSheet, Platform, TouchableOpacity } from "react-native"
+import { LinearGradient } from "expo-linear-gradient"
+import { Ionicons } from "@expo/vector-icons"
+import { useGoBack, useNavigateTo } from "./Module/NavigateTo"
+import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack"
+import { NavigationContainer } from "@react-navigation/native"
 
-import "expo-router/entry"
+import SplashScreen from "../travel/Project/SplashScreen"
+import WelcomeScreen from "./Project/WelcomeScreen"
+import OnBoardingStack from "./Project/OnBoardingStack"
+// import AuthScreenSTack from "./Project/AuthScreenSTack"
+import SignIn from "./Project/AuthScreens/sign-in"
+import SignUp from "./Project/AuthScreens/sign-up"
+import ResetPassword from "./Project/AuthScreens/ResetPassword"
+
+import SpecialtiesScreenStack from "./Project/HomeScreenStack"
+
+// main screens
+import MainScreenTab from "./Project/MainScreenTab"
+
+const Stack = createStackNavigator()
+
+const GradientHeader = () => (
+  <LinearGradient
+    colors={["#33E4DB", "#00BBD3"]}
+    style={{ flex: 1 }}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+  />
+)
+
+const BackArrow = () => {
+  const goBack = useGoBack()
+
+  return (
+  <TouchableOpacity
+  onPress={goBack}
+   style={{
+    paddingHorizontal: 15
+   }}>
+  <Ionicons 
+    name="chevron-back"
+    size={28}
+    color={'#fff'}/>
+    </TouchableOpacity>
+)}
 
 
-// export default function App() {
+export default function App () {
 
-//     const [color, setColor] = useState("red");
-//     const [brand, setBrand]= useState("mustag")
+  return (
+    <NavigationContainer style={styles.container}>
+      <Stack.Navigator
+          initialRouteName="OnBoardingStack"
+          screenOptions={{
+            headerShown: true,
+            headerTintColor: "#fff",
+            headerBackground: GradientHeader,
+            headerLeft: () => <BackArrow />,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontSize: 28,
+              color: "#FFF",
+              fontWeight: "bold",
+            },
+              cardStyleInterpolator:
+                Platform.OS === "ios"
+                  ? CardStyleInterpolators.forHorizontalIOS
+                  : CardStyleInterpolators.forFadeFromRightAndroid,
+          }}>
 
-//   return (
-//     <>
-//     <View style={styles.container}>
+        <Stack.Screen name="SplashScreen" component={SplashScreen}
+          options={{
+            headerShown: false
+          }}/>
 
-//       <Image source={require("./assets/aeiro.png")}
-//       style={{width:100, height:100}}></Image>
+          {/* OnBoarding Screen */}
+        <Stack.Screen name="OnBoardingStack" component={OnBoardingStack}
+              options={{
+                headerShown: false
+              }}/>
 
-//       <Text>Welcome to te aero-line of state express</Text>
+          {/* Welcome Screen */}
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}
+          options={{
+            headerShown: false
+          }}/>
 
-//       <StatusBar style="light" />
+        {/* Auth Screens */}
+        <Stack.Screen name="Sign In" component={SignIn}/>
+        <Stack.Screen name="New Account" component={SignUp}/>
+        <Stack.Screen name="Reset Password" component={ResetPassword}/>
 
-//       <Text style={{position: 'absolute', bottom: 50}}>from Air</Text> 
-//       <Text style={{fontSize: 30}}> my color is {color} {brand}</Text>
 
-//       <Button title='click me' onPress={() => {
-//         setColor("blue")
-//         setBrand("ferrari")
-//       }} />
+        <Stack.Screen  name="Main Screens" component={MainScreenTab}
+          options={{
+            headerShown: false
+          }}/>
 
-//       <Image source={require("./assets/aeiro.png")}
-//       style={{position:  'absolute', bottom: 20 ,width:30, height:20}}></Image>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
 
-//     </View>
-//     </>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#80a1e4ff',
-//     alignItems: 'center',
-//     justifyContent: 'center', 
-//   },
-// });
+const styles = StyleSheet.create({
+  container:{
+  }
+})

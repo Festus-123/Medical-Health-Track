@@ -1,0 +1,56 @@
+import * as React from 'react';
+import { 
+  Text, View, StyleSheet, Image, ScrollView,
+  Alert, Pressable,
+
+ } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from '@expo/vector-icons';
+
+
+
+export default function App() {
+
+    return ( 
+      <View style={styles.container}>
+
+      <Pressable
+      onPress={() => {
+        Alert.alert("Text pressablr example 😁😁😁😁😁😁😁")
+      }}>
+
+        <Text style={styles.Header}>Click on me and see if it works</Text>
+      </Pressable>
+      <Pressable
+       onPress={() => {
+        Alert.alert("Image pressable example 😡😡😡😡😡😡")
+       }}>
+        <Image source={require("./assets/profile.jpg")} style={styles.img} />
+      </Pressable>
+    </View>
+    );
+  }
+
+const styles = StyleSheet.create({
+ container: {
+  flex: 1,
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 100,
+ },
+ text:{
+  fontSize: 15,
+  margin: 20,
+ },
+ img:{
+  width: 310,
+  height: 330,
+  borderRadius: 300,
+ },
+ Header:{
+  fontSize: 30,
+  fontWeight: "bold",
+ }
+});
+

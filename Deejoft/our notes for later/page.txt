@@ -1,0 +1,128 @@
+// console.log(DOMPoint)
+// android sudio
+// amdroid SDk  emulator
+
+// prequisites
+// views 
+// react component androitd and IOS
+// core component.... doc API section
+    // views
+    // text
+    // image
+    // scroll
+    // text input
+// react undermentals
+// JSX
+// enviroment set-up\
+// stick to your friend  ....// stack oveflow
+// expo
+// file struture
+//  file bsed routing
+// default theme set up
+// tools for dev
+
+// react native API
+// asbamced concept in react native
+
+// buid some basic app;icatioon
+// usestate in rexxt=---------
+// useReducer in react-----------
+// useContext in react-----------
+// useEffect in react-----------
+
+
+react native component
+    function
+    class previously domiant
+Egma script
+ return (
+    <View style={styles.container}>
+      <Text style={{
+        fontSize: 30,
+        fontWeight:"bold",
+        position: "absolute",
+        top: 100,
+        }}>
+         Welcome to my page 
+        </Text>
+      <Text style={{fontSize: 20,}}> click next to know more about me </Text>
+      <TouchableOpacity style={{
+        backgroundColor: "#233091ff",
+        padding: 10,
+        paddingRight: 30,
+        borderRadius: 5,
+        marginTop: 20,
+      }}
+      onPress={() => {navigation.navigate("About")}}>
+        <Text style={{color: "white", fontSize: 20,}}>Next  👉</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function ProfileScreen( { navigation } ){
+  return (
+    <View style={styles.container}>
+      <Image source={require("./assets/profile-photo.jpg")} style={styles.img}/>
+      <Text style={{fontWeight: "bold", fontSize: 16,}}>Festus Phillip Abolaji</Text>
+      <Text style={{fontWeight: "bold", fontSize: 16,}}>Dept of Computer Science</Text>
+      <Text style={{fontWeight: "bold", fontSize: 16,}}>Olusegun Agagu University of Science and Technology</Text>
+      <Text style={{fontWeight: "bold", fontSize: 16,}}> 300lvl </Text>
+      <Text style={{fontWeight: "bold", fontSize: 16,}}> A renouned software Engineer </Text>
+    </View>
+  )
+}
+function AboutScreen( { navigation } ) {
+  return (
+    <View style={styles.container}  >
+      <Text style={{fontWeight: "bold", fontSize: 40, marginBottom: 10,}}> About Me! </Text>
+      <Text style={styles.aboutText}>My name is 
+      <Text style={{fontWeight: "bold"}}> Festus Phillip Adebola </Text>
+      i am a senior software developer, specializzed in tech skills like 
+      <Text style={{fontWeight: "bold"}}> Front-End and Back-End Development </Text>,
+      <Text style={{fontWeight: "bold"}}> Mobile Applications Development </Text>,
+      <Text style={{fontWeight: "bold"}}> Graphics Design and Branding </Text>,
+      <Text style={{fontWeight: "bold"}}> Content Writing </Text>
+      with 5 years of experience and good reports.
+      ...i'm an incredible team player with experience of working with teams,
+      participated in the 
+      <Text style={{fontWeight: "bold"}}> Inventors NextGEN BUilders </Text> programme,
+      <Text style={{fontWeight: "bold"}}> African NextGen Devs </Text>,
+      <Text style={{fontWeight: "bold"}}> Akure Dev Fest Competition </Text> program.
+      <Text> </Text>
+      </Text>
+      <Text style={styles.aboutText}>
+        technologies i'm familair with using as techies are..
+        <Text style={{fontWeight: "bold"}}>Javascript </Text>,
+        <Text style={{fontWeight: "bold"}}>TypeScript </Text>,
+        <Text style={{fontWeight: "bold"}}>React </Text>,
+        <Text style={{fontWeight: "bold"}}>React Native </Text>,
+        <Text style={{fontWeight: "bold"}}>Node.Js </Text>,
+        <Text style={{fontWeight: "bold"}}>Express js </Text>,
+        <Text style={{fontWeight: "bold"}}>Photoshop & Illustrators </Text>,
+        <Text style={{fontWeight: "bold"}}>ERD </Text>,
+        <Text style={{fontWeight: "bold"}}>Content Platform </Text>
+        while al this are a fragment of my ability, this is as so much i can write for now .
+      </Text>
+      <TouchableOpacity style={{marginTop: 20, padding: 10}}  onPress={() => {navigation.navigate("Profile")}}>
+        <Text style={{
+          color: "blue",
+          textDecorationLine: "underline",
+        }}>My profile</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+responsive button
+
+initial rote name
+starrt first on app load 
+order---- sets the order of the tabs
+parts--- controls mapping of react screen 
+if true tab is renered -- defaut true
+tab bar componenet --- eg how label and show icon
+implementation 
+
+npx expo install fix
+npx expo doctor.........
