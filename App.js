@@ -52,7 +52,7 @@ export default function App () {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator
-          initialRouteName="OnBoardingStack"
+          initialRouteName="Main Screens"
           screenOptions={{
             headerShown: true,
             headerTintColor: "#fff",

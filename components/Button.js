@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {View, StyleSheet, Text, TouchableOpacity} from "react-native"
 import { LinearGradient } from 'expo-linear-gradient'
 
-const ButtonComponent = ({ title, onPress, BtnStyleLeft, BtnStyleRight, BtnTextStyle, newBtnArea }) => {
+const ButtonComponent = ({ title, onPress, BtnStyleLeft, BtnStyleRight, BtnTextStyle, newBtnArea, newStyles }) => {
 
   return (
     <TouchableOpacity
@@ -10,7 +10,7 @@ const ButtonComponent = ({ title, onPress, BtnStyleLeft, BtnStyleRight, BtnTextS
       style={[styles.BtnArea, newBtnArea]}>
     <LinearGradient 
       colors= {[BtnStyleLeft, BtnStyleRight]}
-      style={styles.Btn}>
+      style={[styles.Btn, newStyles]}>
         <Text
           style={[styles.BtnTxt, BtnTextStyle]}>
               {title}

@@ -55,7 +55,8 @@ const HomeScreen = () => {
             </View>
             <ProfilePhotoPlaceholder 
               source={imageSource.ProfilePhoto}
-              IconSize={24}/>
+              IconSize={24}
+              onPress={() => NavigateTo('Profile Screen')}/>
           </View>
 
       </View>
@@ -88,10 +89,12 @@ const HomeScreen = () => {
         }}>
           <CategoryIcon 
             source={imageSource.Favorite}
-            label={'Favorite'}/>
+            label={'Favorite'}
+            onPress={() => NavigateTo('Favorite Screen')}/>
           <CategoryIcon 
             source={imageSource.DoctorsIcon}
-            label={'Doctors'}/>
+            label={'Doctors'}
+            onPress={() => NavigateTo('Doctors Screen')}/>
           <CategoryIcon 
             source={imageSource.PharmacyIcon}
             label={'Pharmacy'}/>

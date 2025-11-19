@@ -21,6 +21,14 @@ import OphtamologyScreen from "./MainScreen/mainStackScreens/OphtamologyScreen";
 import OrthopedicsScreen from "./MainScreen/mainStackScreens/OrthopedicsScreen";
 
 import DoctorScreen from "./MainScreen/Doctors/DoctorScreen";
+import DoctorProfileScreen from "./MainScreen/Doctors/DoctorProfileScreen";
+
+import RatingScreen from "./MainScreen/Doctors/RatingScreen";
+import FavoriteScreen from "./MainScreen/Doctors/FavoriteScreen";
+
+
+import InfoHeaderView from "../components/InfoHeaderView";
+// import DoctorInfoStack from "./MainScreen/DoctorInfoStack";
 
 import Search from "../components/SearchBar";
 
@@ -141,6 +149,55 @@ export default function HomeScreenStack() {
             <Stack.Screen name="Orthopedics Screen" component={OrthopedicsScreen}/>
 
             <Stack.Screen name="Doctors Screen" component={DoctorScreen}/>
+            <Stack.Screen name="Doctor Profile Screen" component={DoctorProfileScreen}
+                options={({ route }) => ({
+                    headerTitle: () => (
+                        <InfoHeaderView 
+                            source={route.params?.doctorImg || ""}
+                            name={route.params?.doctorName || ""}
+                            title={route.params?.doctorTitle || ""}
+                            rateCount={40}
+                            messageCount={19}
+                            experienceCount={20}/>
+                    ),
+                    headerStyle: {
+                        height: 260
+                    },
+                    headerLeftContainerStyle: {
+                        marginBottom: 180
+                    }
+                })}/>
+
+            <Stack.Screen name="Top Rating" component={RatingScreen}
+                options={{
+                    headerTitle: "Ratings",
+                    headerStyle:{
+                        height: 100
+                    },
+                    headerLeftContainerStyle:{
+                        marginBottom: 0
+                    },
+                    headerTitleStyle:{
+                        color: "#ffffff",
+                        fontSize: 28,
+                        textAlign: "center"
+                    }
+                }}/>
+            <Stack.Screen name="Favorite Screen" component={FavoriteScreen} 
+                options={{
+                    headerTitle: 'Favorite',
+                    headerStyle:{
+                        height: 100
+                    },
+                    headerLeftContainerStyle:{
+                        marginBottom: 0
+                    },
+                    headerTitleStyle:{
+                        color: '#ffffff',
+                        fontSize: 28,
+                        textAlign: "center"
+                    }
+                }}/>
         </Stack.Navigator>
     )
 } 

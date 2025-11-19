@@ -3,8 +3,9 @@ import { useNavigateTo } from '../Module/NavigateTo'
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 
 import AppIcons from './AppIcons'
+import { Ionicons } from '@expo/vector-icons'
 
-const DoctorsProfileView = ({ DoctorName, DoctorTitle, source }) => {
+const ProfessionalDoctorView = ({ DoctorName, DoctorTitle, source }) => {
 
     const NavigateTo = useNavigateTo()
 
@@ -27,11 +28,37 @@ const DoctorsProfileView = ({ DoctorName, DoctorTitle, source }) => {
 
         {/* Name section */}
         <View style={styles.textArea}>
+
+            <View style={{
+              flexDirection: 'row',
+              alignItems: " center",
+              gap: 5,
+              marginBottom: 20,
+              // justifyContent: "center"
+            }}>
+              <Ionicons name='medal-outline' size={14} color={'#ffffff'} style={{
+                backgroundColor: "#00BBD3",
+                borderRadius: 50,
+                padding: 2,
+                alignItems: "center",
+
+                width: 20,
+                height: 20
+              }} />
+              <Text>Professional Doctor</Text>
+            </View>
+
             <Text style={styles.nameTxt}> {DoctorName} </Text>
             <Text style={styles.titletxt}> {DoctorTitle} </Text>
 
             {/* Info, like and calendar */}
             <View style={styles.interactiveView}>
+              
+              <View style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 5
+              }}>
                 <TouchableOpacity
                     style={styles.info}
                     onPress={() => NavigateTo('Doctor Profile Screen', {
@@ -42,6 +69,13 @@ const DoctorsProfileView = ({ DoctorName, DoctorTitle, source }) => {
                         <Text style={{ color:'#00BBD3', fontSize: 16}}> info </Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity
+                    style={styles.rating}>
+                        <Ionicons name='star' size={10} color={'#00BBD3'}/>
+                        <Text style={{ color:'#00BBD3', fontSize: 16}}> 5 </Text>
+                </TouchableOpacity>
+              </View>
+              
                 <View style={styles.iconView}>
                     <AppIcons IconName={'calendar-outline'} IconSize={20} iconColor={'#00BBD3'} newAppIconStyle={{
                         backgroundColor: "transparent",
@@ -60,7 +94,7 @@ const DoctorsProfileView = ({ DoctorName, DoctorTitle, source }) => {
   )
 }
 
-export default DoctorsProfileView
+export default ProfessionalDoctorView
 
 const styles = StyleSheet.create({
     container:{
@@ -94,7 +128,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         // width: "90%",
-        gap: 60,
+        gap: 30,
         marginTop: 10
         // paddingHorizontal: 20
     },
@@ -112,5 +146,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderColor: '#00BBD3',
+    },
+    rating:{
+        borderWidth: 1,
+        width: 60,
+        height: 25,
+        borderRadius: 20,
+        alignItems: "center",
+        justifyContent: "center",
+        borderColor: '#00BBD3',
+        flexDirection: 'row',
+        gap: 5
     }
 })

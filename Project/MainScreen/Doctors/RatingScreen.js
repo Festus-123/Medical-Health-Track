@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { View, StyleSheet, ScrollView } from 'react-native'
 import { imageSource } from '../../../components/vectors'
-import { useRoute } from "@react-navigation/native";
 
-
-import DoctorsProfileView from '../../../components/DoctorsProfileView'
 import FIlterView from '../../../components/FilterView'
-
+import ProfessionalDoctorView from '../../../components/ProfessionalDoctorView'
 
     const Lists = [[
         "Dr. Daniel Rodriguez",
@@ -17,8 +14,8 @@ import FIlterView from '../../../components/FilterView'
     ],
 
     [
-        "Interventional Cardiologist",
-        "Electrophysiologist",
+        "Cardiologist",
+        "Physiologist",
         "Cardiac Imaging Specialist",
         "Cardiology",
         "Intensive Cardiologist"
@@ -31,51 +28,40 @@ import FIlterView from '../../../components/FilterView'
         "MaleDoctor"
     ],]
 
+    const details = Lists[0].map((name, i) => {
+        // const imgName = name.includes(name.slice(4, 7))
+        return {
+            name,
+            title: Lists[1][i],
+            source: imageSource[Lists[2][i]]
+        }
+    })    
 
-const details = Lists[0].map((name, i) => {
-    // const imgName = name.includes(name.slice(4, 7))
-    return {
-        name,
-        title: Lists[1][i],
-        source: imageSource[Lists[2][i]]
-    }
-})
+const RatingScreen = () => {
 
-
-const CardiologyScreen = () => {
-
-    const route = useRoute();
-    const searchText = route.params?.search?.toLowerCase() || "";
-    const [filterd, setFilter] = useState(false)
-
-    let filteredList = details.filter( (doc) => {
-        return (
-        doc.name.toLocaleLowerCase().includes(searchText) ||
-        doc.title.toLocaleLowerCase().includes(searchText)
-        )
-    })
-
-    if(filterd){
-        filteredList = [...filteredList].sort((a, b) => 
-            b.name.localeCompare(a.name)
-        )
-    }else{
-        filteredList = [...filteredList].sort((a, b) => 
-            a.name.localeCompare(b.name)
-        )
-    }
-
+        const [filterd, setFilter] = useState(false)
     
-    const handleFIlter = () => {
-        setFilter(!filterd)
-    }
+        let filteredList;
+    
+        if(filterd){
+            filteredList = details.sort((a, b) => 
+                b.name.localeCompare(a.name)
+            )
+        }else{
+            filteredList = details.sort((a, b) => 
+                a.name.localeCompare(b.name)
+            )
+        }
+    
+        
+        const handleFIlter = () => {
+            setFilter(!filterd)
+        }
 
   return (
     <View style={styles.container}>
-
         <FIlterView 
-            alphabethArrange={filterd ? 'Z - A' : 'A - Z'}
-            seeAll={'See all'}
+            alphabethArrange={ filterd ? 'Z - A' : 'A - Z'}
             alphabeticalFIlterAction={handleFIlter}/>
 
         <ScrollView
@@ -87,26 +73,24 @@ const CardiologyScreen = () => {
                 flexGrow: 1,
                 paddingBottom: 100
             }}>
-
                 { filteredList.map( (doc, index) => (
-                    <DoctorsProfileView 
+                    <ProfessionalDoctorView 
                         key={index}
                         source={doc.source}
                         DoctorName={doc.name}
                         DoctorTitle={doc.title}/>
                 ))}
-
         </ScrollView>
     </View>
   )
 }
 
-export default CardiologyScreen
+export default RatingScreen
 
 const styles = StyleSheet.create({
     container:{
-        marginTop: 10,
         width: "100%",
         alignItems: "center",
+        marginTop: 20
     }
 })

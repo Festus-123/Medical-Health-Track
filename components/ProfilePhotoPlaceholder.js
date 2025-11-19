@@ -1,18 +1,22 @@
 import React from 'react'
 import { View, StyleSheet, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { useNavigateTo } from '../Module/NavigateTo'
 
-const ProfilePhotoPlaceholder = ({ source, newImg, iconSIze, iconColor, newIconStyle, onProgress }) => {
+const ProfilePhotoPlaceholder = ({ source, newImg, iconSIze, iconColor, newIconStyle, onPress }) => {
+    const NavigateTo = useNavigateTo()
+
   return (
-    <View>
+    <View
+        style={styles.container}>
     <Image 
         source={source}
-        onProgress={onProgress}
         style={[styles.img, newImg]}/>
     <Ionicons 
         name='pencil-outline'
         size={iconSIze}
         color={iconColor}
+        onPress={() => NavigateTo('Profile Screen')}
         style={[styles.iconStyle, newIconStyle]}/>
     </View>
   )

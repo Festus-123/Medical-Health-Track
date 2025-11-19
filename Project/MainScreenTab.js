@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import HomeScreenStack from './HomeScreenStack'
 import ChatScreenStack from "./ChatScreenStack";
+import ProfileScreenStack from "./ProfileScreenStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +44,8 @@ export default function MainScreenTab () {
                             IconName = focused ? "home" : "home-outline"
                         }if(route.name === "Chat Screens"){
                             IconName = focused ? "chatbubbles" : "chatbubbles-outline"
+                        }if(route.name === "Profile Screens"){
+                            IconName = focused ? 'person' : "person-outline"
                         }
 
                         return <Ionicons name={IconName} size={26} color={"#13CAD6"}/>
@@ -52,6 +55,12 @@ export default function MainScreenTab () {
 
                 <Tab.Screen name="Home Screens" component={HomeScreenStack}/>
                 <Tab.Screen name="Chat Screens" component={ChatScreenStack}/>
+                <Tab.Screen name="Profile Screens" component={ProfileScreenStack}
+                    options={{
+                        tabBarStyle:{
+                            display: "none"
+                        }
+                    }}/>
 
             </Tab.Navigator>
 
