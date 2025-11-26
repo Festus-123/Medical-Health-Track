@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useGoBack } from '../utils/navigateTo';
 import { Ionicons } from '@expo/vector-icons';
 
-import OnBoardingStack from '../screens/OnBoardingStack';
+import OnBoardingStack from './OnBoardingStack';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignUp from '../screens/SignUp';
 import SignIn from '../screens/SignIn';

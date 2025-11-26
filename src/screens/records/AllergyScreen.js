@@ -1,16 +1,15 @@
-import React from 'react';
-import { View, StyleSheet,  } from 'react-native';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import ScreenWrapper from "../../components/ScreenWrapper";
 
 const AllergyScreen = () => {
   return (
-    <View>
-        
-    </View>
-  )
-}
+    <ScreenWrapper scroll={true}>
+      <View></View>
+    </ScreenWrapper>
+  );
+};
 
-export default AllergyScreen
+export default AllergyScreen;
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({});

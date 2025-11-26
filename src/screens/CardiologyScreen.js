@@ -1,114 +1,107 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, ScrollView } from 'react-native'
-import { imageSource } from '../constants/imageSource'
+import React, { useState } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { imageSource } from "../constants/imageSource";
 import { useRoute } from "@react-navigation/native";
 
+import ScreenWrapper from "../components/ScreenWrapper";
+import DoctorsProfileView from "../components/DoctorsProfileView";
+import FIlterView from "../components/FilterView";
 
-import DoctorsProfileView from '../components/DoctorsProfileView'
-import FIlterView from '../components/FilterView'
+const Lists = [
+  [
+    "Dr. Daniel Rodriguez",
+    "Dr. Jessica Ramirez",
+    "Dr. Michael Chang",
+    "Dr. Michael Davidson, M.D.",
+    "Dr. Ibamigboye Kolinton",
+  ],
 
-
-    const Lists = [[
-        "Dr. Daniel Rodriguez",
-        "Dr. Jessica Ramirez",
-        "Dr. Michael Chang",
-        "Dr. Michael Davidson, M.D.",
-        "Dr. Ibamigboye Kolinton"
-    ],
-
-    [
-        "Interventional Cardiologist",
-        "Electrophysiologist",
-        "Cardiac Imaging Specialist",
-        "Cardiology",
-        "Intensive Cardiologist"
-    ],
-    [
-        "MaleDoctor",
-        "FemaleDoctor",
-        "MaleDoctor",
-        "FemaleDoctor",
-        "MaleDoctor"
-    ],]
-
+  [
+    "Interventional Cardiologist",
+    "Electrophysiologist",
+    "Cardiac Imaging Specialist",
+    "Cardiology",
+    "Intensive Cardiologist",
+  ],
+  ["MaleDoctor", "FemaleDoctor", "MaleDoctor", "FemaleDoctor", "MaleDoctor"],
+];
 
 const details = Lists[0].map((name, i) => {
-    // const imgName = name.includes(name.slice(4, 7))
-    return {
-        id: i + 1,
-        name,
-        title: Lists[1][i],
-        source: imageSource[Lists[2][i]]
-    }
-})
-
+  // const imgName = name.includes(name.slice(4, 7))
+  return {
+    id: i + 1,
+    name,
+    title: Lists[1][i],
+    source: imageSource[Lists[2][i]],
+  };
+});
 
 const CardiologyScreen = () => {
+  const route = useRoute();
+  const searchText = route.params?.search?.toLowerCase() || "";
+  const [filterd, setFilter] = useState(false);
 
-    const route = useRoute();
-    const searchText = route.params?.search?.toLowerCase() || "";
-    const [filterd, setFilter] = useState(false)
+  let filteredList = details.filter((doc) => {
+    return (
+      doc.name.toLocaleLowerCase().includes(searchText) ||
+      doc.title.toLocaleLowerCase().includes(searchText)
+    );
+  });
 
-    let filteredList = details.filter( (doc) => {
-        return (
-        doc.name.toLocaleLowerCase().includes(searchText) ||
-        doc.title.toLocaleLowerCase().includes(searchText)
-        )
-    })
+  if (filterd) {
+    filteredList = [...filteredList].sort((a, b) =>
+      b.name.localeCompare(a.name)
+    );
+  } else {
+    filteredList = [...filteredList].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+  }
 
-    if(filterd){
-        filteredList = [...filteredList].sort((a, b) => 
-            b.name.localeCompare(a.name)
-        )
-    }else{
-        filteredList = [...filteredList].sort((a, b) => 
-            a.name.localeCompare(b.name)
-        )
-    }
-
-    
-    const handleFIlter = () => {
-        setFilter(!filterd)
-    }
+  const handleFIlter = () => {
+    setFilter(!filterd);
+  };
 
   return (
-    <View style={styles.container}>
-
-        <FIlterView 
-            alphabethArrange={filterd ? 'Z - A' : 'A - Z'}
-            seeAll={'See all'}
-            alphabeticalFIlterAction={handleFIlter}/>
+    <ScreenWrapper scroll={true}>
+      <View style={styles.container}>
+        <FIlterView
+          alphabethArrange={filterd ? "Z - A" : "A - Z"}
+          seeAll={"See all"}
+          alphabeticalFIlterAction={handleFIlter}
+        />
 
         <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps='handled'
-            contentContainerStyle={{
-                width: 380,
-                alignItems: "center",
-                flexGrow: 1,
-                paddingBottom: 100
-            }}>
-
-                { filteredList.map( (doc, index) => (
-                    <DoctorsProfileView
-                        key={index}
-                        id={doc.id} 
-                        source={doc.source}
-                        DoctorName={doc.name}
-                        DoctorTitle={doc.title}/>
-                ))}
-
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{
+            width: 380,
+            alignItems: "center",
+            flexGrow: 1,
+            paddingBottom: 100,
+          }}
+        >
+          {filteredList.map((doc, index) => (
+            <DoctorsProfileView
+              key={index}
+              id={doc.id}
+              source={doc.source}
+              DoctorName={doc.name}
+              DoctorTitle={doc.title}
+            />
+          ))}
         </ScrollView>
-    </View>
-  )
-}
+      </View>
+    </ScreenWrapper>
+  );
+};
 
-export default CardiologyScreen
+export default CardiologyScreen;
 
 const styles = StyleSheet.create({
-    container:{
-        marginTop: 10,
-        width: "100%",
-        alignItems: "center",
-    }
-})
+  container: {
+    marginTop: 10,
+    width: "100%",
+    alignItems: "center",
+  },
+});

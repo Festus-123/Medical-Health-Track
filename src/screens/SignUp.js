@@ -10,6 +10,8 @@ import { imageSource } from "../constants/imageSource";
 import { useNavigateTo } from "../utils/navigateTo";
 import { useState } from "react";
 
+import ScreenWrapper from "../components/ScreenWrapper";
+
 import Input from "../components/input";
 import ButtonComponent from "../components/Button";
 import Logo from "../components/Logo";
