@@ -8,23 +8,23 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-screen.png",
+      "image": "./src/assets/used-assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#0033db"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/splash-screen.png",
+        "foregroundImage": ".src/assets/icons/green-logo.png",
         "backgroundColor": "#00BBD3"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.travel"
     },
     "web": {
-      "favicon": "./assets/used-assets/favicon.png"
+      "favicon": ".src/assets/used-assets/favicon.png"
     }
   }
 }
