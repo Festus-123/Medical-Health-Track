@@ -36,8 +36,8 @@ const makeStyles = ({ scaleSize }) =>
     container: {
       flex: 1,
       alignItems: "center",
-      marginTop: scaleSize(20),
-      gap: scaleSize(20),
-      padding: scaleSize(10),
+      marginTop: scaleSize(10),
+      gap: scaleSize(10),
+      padding: scaleSize(0),
     },
   });

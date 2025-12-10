@@ -23,7 +23,7 @@ const ProfileScreen = () => {
   const styles = useScaledStyles(makeStyles);
 
   return (
-    <ScreenWrapper>
+    // <ScreenWrapper>
       <View style={styles.container}>
         <View style={click ? styles.inactive : styles.active}></View>
 
@@ -32,8 +32,13 @@ const ProfileScreen = () => {
           iconName={"person-outline"}
           onPress={() => NavigateTo("Edit Profile")}
         />
-        <Profile title={"Favorite"} iconName={"heart-outline"} />
+        <Profile 
+          title={"Favorite"} 
+          iconName={"heart-outline"} 
+          onPress={() => NavigateTo('Favorite Screen')}/>
+
         <Profile title={"Payment Method"} iconName={"wallet-outline"} />
+
         <Profile
           title={"Privacy Policy"}
           iconName={"lock-closed-outline"}
@@ -57,7 +62,7 @@ const ProfileScreen = () => {
 
         {click ? <ConfirmLogOut onPress={() => setClick(false)} /> : null}
       </View>
-    </ScreenWrapper>
+    // </ScreenWrapper>
   );
 };
 

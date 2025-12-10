@@ -49,17 +49,16 @@ const SignIn = () => {
 
   const handleSubmit = () => {
     setLoading(!loading);
+    if ( validateForm() ) {
     setTimeout(() => {
       console.log("userData", form);
       Alert.alert("you have successfully ✅, logged in");
       setLoading(loading);
       navigateReplace("AppNavigator");
     }, 3000);
-    // if ( validateForm() ) {
-
-    // }else{
-    //     Alert.alert("❌ Form has invalid input")
-    // }
+    }else{
+        Alert.alert("❌ Form has invalid input")
+    }
   };
 
   const handleChange = (name, value) => {

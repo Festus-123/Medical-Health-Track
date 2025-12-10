@@ -43,7 +43,7 @@ export const BackArrow = () => {
 const RootNavigator = () => {
   return (
       <Stack.Navigator
-          initialRouteName="AppNavigator"
+          initialRouteName="WelcomeScreen"
           screenOptions={{
             headerShown: true,
             headerTintColor: "#fff",

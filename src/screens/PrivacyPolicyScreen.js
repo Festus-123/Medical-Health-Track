@@ -48,7 +48,7 @@ const PrivacyPolicyScreen = () => {
               fontWeight: "bold",
             }}
           >
-            1
+            2
           </Text>
           <Text style={styles.bodyText}>
             Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada
@@ -65,7 +65,7 @@ const PrivacyPolicyScreen = () => {
               fontWeight: "bold",
             }}
           >
-            1
+            3
           </Text>
           <Text style={styles.bodyText}>
             Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada
@@ -82,7 +82,7 @@ const PrivacyPolicyScreen = () => {
               fontWeight: "bold",
             }}
           >
-            1
+            4
           </Text>
           <Text style={styles.bodyText}>
             Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada
@@ -105,8 +105,8 @@ const makeStyles = ({ scaleSize, scaleFont }) =>
     container: {
       flex: 1,
       alignItems: "center",
-      marginTop: scaleSize(20),
-      padding: scaleSize(10),
+      marginTop: scaleSize(10),
+      padding: scaleSize(5),
     },
     updateText: {
       fontWeight: "bold",
@@ -115,7 +115,7 @@ const makeStyles = ({ scaleSize, scaleFont }) =>
     },
     bodyText: {
       lineHeight: scaleFont(20),
-      marginVertical: scaleSize(10),
+      marginVertical: scaleSize(0),
       width: "90%",
     },
     sectionTitle: {
@@ -128,5 +128,6 @@ const makeStyles = ({ scaleSize, scaleFont }) =>
     row: {
       flexDirection: "row",
       gap: scaleSize(5),
+      marginVertical: scaleSize(10)
     },
   });

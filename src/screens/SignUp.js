@@ -75,7 +75,8 @@ const SignUp = () => {
   const styles = useScaledStyles(makeStyles);
 
   return (
-    <ScrollView>
+    <ScrollView 
+        keyboardShouldPersistTaps='handled'>
       <View style={styles.container}>
         <Input
           label="Full Name"

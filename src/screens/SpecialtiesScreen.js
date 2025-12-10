@@ -91,7 +91,7 @@ const makeStyles = ({ scaleSize }) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      marginTop: scaleSize(20),
+      marginTop: scaleSize(10),
       alignItems: "center",
     },
     scrollView: {
@@ -100,7 +100,7 @@ const makeStyles = ({ scaleSize }) =>
     contentContainer: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: scaleSize(40),
+      gap: scaleSize(50),
       width: "100%",
       padding: 0,
       alignItems: "center",

@@ -5,18 +5,22 @@ import ScreenWrapper from "../components/ScreenWrapper";
 import { useScaledStyles } from "../utils/styleHelpers";
 import Toggle from "../components/Toggle";
 
-const ToggleSettings = ({ title }) => (
-  <View style={styles.toggleSettings}>
+const ToggleSettings = ({ title }) => {
+    const styles = useScaledStyles(makeStyles);
+  return (
+    <View style={styles.toggleSettings}>
     <Text style={styles.text}>{title}</Text>
     <Toggle />
   </View>
-);
+  )
+};
+
 
 const NotificationSettingsScreen = () => {
-  const styles = useScaledStyles(makeStyles);
-
+  const styles = useScaledStyles(makeStyles); 
+  
   return (
-    <ScreenWrapper scroll>
+    // <ScreenWrapper scroll>
       <View style={styles.container}>
         <ToggleSettings title={"General notification"} />
         <ToggleSettings title={"Sound"} />
@@ -27,7 +31,7 @@ const NotificationSettingsScreen = () => {
         <ToggleSettings title={"Promo and Discount"} />
         <ToggleSettings title={"Cashback"} />
       </View>
-    </ScreenWrapper>
+    // </ScreenWrapper>
   );
 };
 
@@ -38,8 +42,8 @@ const makeStyles = ({ scaleSize, scaleFont }) =>
     container: {
       flex: 1,
       alignItems: "center",
-      marginTop: scaleSize(20),
-      gap: scaleSize(30),
+      marginTop: scaleSize(10),
+      gap: scaleSize(20),
     },
     toggleSettings: {
       flexDirection: "row",
