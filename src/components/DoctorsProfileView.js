@@ -64,13 +64,13 @@ const DoctorsProfileView = ({ DoctorName, DoctorTitle, source, id }) => {
 
                 <View style={styles.iconView}>
                     <AppIcons IconName={'calendar-outline'} IconSize={20} iconColor={'#00BBD3'} newAppIconStyle={{
-                        backgroundColor: "transparent",
+                        backgroundColor: "transparent"
                     }}/>
                     <AppIcons IconName={'help'} IconSize={20} iconColor={'#00BBD3'} newAppIconStyle={{
-                        backgroundColor: "transparent",
+                        backgroundColor: "transparent"
                     }}/>
                     <AppIcons IconName={ isFavorite ? 'heart' : 'heart-outline'} IconSize={20} iconColor={'#00BBD3'} newAppIconStyle={{
-                        backgroundColor: "transparent",
+                        backgroundColor: "transparent"
                     }}
                     onPress={handleFavorite}/>
                 </View>

@@ -102,7 +102,7 @@ const makeStyles = ({ scaleSize }) =>
       flexWrap: "wrap",
       gap: scaleSize(50),
       width: "100%",
-      padding: 0,
+      paddingBottom: 40,
       alignItems: "center",
       justifyContent: "center",
     },
