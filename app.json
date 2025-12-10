@@ -17,14 +17,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": ".src/assets/used-assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/used-assets/adaptive-icon.png",
         "backgroundColor": "#00BBD3"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.travel"
     },
     "web": {
-      "favicon": ".src/assets/used-assets/favicon.png"
+      "favicon": "./src/assets/used-assets/favicon.png"
     }
   }
 }
