@@ -8,7 +8,7 @@ import ButtonComponent from "../components/Button";
 
 const EditProfileScreen = () => {
   return (
-    <ScreenWrapper scrolll>
+    <ScreenWrapper scroll>
       <View style={styles.container}>
         <Input label={"Full Name"} placeholder={"John Doe"} />
         <Input label={"Phone Number"} placeholder={"+234800000000"} />

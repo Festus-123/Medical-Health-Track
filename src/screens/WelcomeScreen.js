@@ -3,12 +3,15 @@ import { StyleSheet, View, Text } from "react-native";
 import { imageSource } from "../constants/imageSource";
 import { useReplaceNavigation } from "../utils/navigateTo";
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 import Logo from "../components/Logo";
 import ButtonComponent from "../components/Button";
 
 const WelcomeScreen = () => {
   const navigateReplace = useReplaceNavigation();
+
+  const styles = useScaledStyles(makeStyles);
 
   return (
     <ScreenWrapper scroll>
@@ -51,35 +54,36 @@ const WelcomeScreen = () => {
 
 export default WelcomeScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  strongTxt: {
-    fontWeight: "900",
-    fontSize: 50,
-    color: "#00BBD3",
-    marginTop: 40,
-    marginBlock: 10,
-  },
-  lightTxt: {
-    fontWeight: "normal",
-    color: "#00BBD3",
-    fontSize: 50,
-  },
-  longTxt: {
-    textAlign: "center",
-    marginHorizontal: 10,
-    marginTop: 40,
-    marginBottom: 25,
-    fontSize: 12,
-    lineHeight: 25,
-  },
-  ButtonArea: {
-    position: "absolute",
-    bottom: "10%",
-    gap: 10,
-  },
-});
+const makeStyles = ({ scaleSize, scaleFont }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    strongTxt: {
+      fontWeight: "900",
+      fontSize: scaleFont(50),
+      color: "#00BBD3",
+      marginTop: scaleSize(40),
+      marginBlock: scaleSize(10),
+    },
+    lightTxt: {
+      fontWeight: "normal",
+      color: "#00BBD3",
+      fontSize: scaleFont(50),
+    },
+    longTxt: {
+      textAlign: "center",
+      marginHorizontal: scaleSize(10),
+      marginTop: scaleSize(40),
+      marginBottom: scaleSize(25),
+      fontSize: scaleFont(12),
+      lineHeight: scaleFont(25),
+    },
+    ButtonArea: {
+      position: "absolute",
+      bottom: "10%",
+      gap: scaleSize(10),
+    },
+  });

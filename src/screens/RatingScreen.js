@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { imageSource } from "../constants/imageSource";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 import FIlterView from "../components/FilterView";
 import ProfessionalDoctorView from "../components/ProfessionalDoctorView";
 
@@ -49,6 +50,8 @@ const RatingScreen = () => {
     setFilter(!filterd);
   };
 
+  const styles = useScaledStyles(makeStyles);
+
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
@@ -60,12 +63,7 @@ const RatingScreen = () => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{
-            width: 380,
-            alignItems: "center",
-            flexGrow: 1,
-            paddingBottom: 100,
-          }}
+          contentContainerStyle={styles.contentContainer}
         >
           {filteredList.map((doc, index) => (
             <ProfessionalDoctorView
@@ -83,10 +81,17 @@ const RatingScreen = () => {
 
 export default RatingScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    alignItems: "center",
-    marginTop: 20,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      width: "100%",
+      alignItems: "center",
+      marginTop: scaleSize(20),
+    },
+    contentContainer: {
+      width: "100%",
+      alignItems: "center",
+      flexGrow: 1,
+      paddingBottom: scaleSize(100),
+    },
+  });

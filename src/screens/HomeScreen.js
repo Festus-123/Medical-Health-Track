@@ -19,14 +19,22 @@ import Calendar from "../components/Calendar";
 import AppointmentTable from "../components/AppointmentTable";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const HomeScreen = () => {
   const NavigateTo = useNavigateTo();
 
+  const styles = useScaledStyles(makeStyles);
+
   return (
-    <ScreenWrapper scroll>
+    // <ScreenWrapper scroll>
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView 
+        contentContainerStyle={{
+          padding: 0,
+          // width: "100%",
+          // borderWidth: 1
+        }}>
           {/* nav view */}
           <View style={styles.navView}>
             <View style={styles.appIconView}>
@@ -185,39 +193,41 @@ const HomeScreen = () => {
           </View>
         </ScrollView>
       </View>
-    </ScreenWrapper>
+    // </ScreenWrapper>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    flex: 1,
-    alignItems: "center",
-    marginTop: 30,
-    // padding: 10
-  },
-  appIconView: {
-    flexDirection: "row",
-    // paddingRight: 20
-  },
-  profileDetails: {
-    flexDirection: "row",
-    gap: 10,
-    alignItems: "center",
-  },
-  navView: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 15,
-    paddingHorizontal: 10,
-  },
-  calendarView: {
-    width: "100%",
-    height: 350,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      width: "100%",
+      flex: 1,
+      alignItems: "center",
+      marginTop: scaleSize(30),
+      // borderWidth: 1,
+      // margin: 0
+    },
+    appIconView: {
+      flexDirection: "row",
+    },
+    profileDetails: {
+      flexDirection: "row",
+      gap: scaleSize(10),
+      alignItems: "center",
+    },
+    navView: {
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: scaleSize(15),
+      paddingHorizontal: scaleSize(10),
+    },
+    calendarView: {
+      width: "100%",
+      height: scaleSize(350),
+      // margin: 0,
+    },
+  });

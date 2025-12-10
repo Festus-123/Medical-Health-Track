@@ -4,6 +4,7 @@ import { imageSource } from "../constants/imageSource";
 import { useRoute } from "@react-navigation/native";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 import DoctorsProfileView from "../components/DoctorsProfileView";
 import FIlterView from "../components/FilterView";
 
@@ -70,6 +71,8 @@ const OncologyScreen = () => {
     setFilter(!filterd);
   };
 
+  const styles = useScaledStyles(makeStyles);
+
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
@@ -82,15 +85,7 @@ const OncologyScreen = () => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{
-            // padding: 10,
-            width: 380,
-            alignItems: "center",
-            // justifyContent: "center",
-            // marginTop: 10,
-            flexGrow: 1,
-            paddingBottom: 100,
-          }}
+          contentContainerStyle={styles.contentContainer}
         >
           {filteredList.map((doc, index) => (
             <DoctorsProfileView
@@ -109,10 +104,17 @@ const OncologyScreen = () => {
 
 export default OncologyScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 10,
-    width: "100%",
-    alignItems: "center",
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      marginTop: scaleSize(10),
+      width: "100%",
+      alignItems: "center",
+    },
+    contentContainer: {
+      width: "100%",
+      alignItems: "center",
+      flexGrow: 1,
+      paddingBottom: scaleSize(100),
+    },
+  });

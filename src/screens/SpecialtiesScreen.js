@@ -4,6 +4,7 @@ import { imageSource } from "../constants/imageSource";
 import { useNavigateTo } from "../utils/navigateTo";
 import { useRoute } from "@react-navigation/native";
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 import AvatarIcon from "../components/AvatarIcon";
 import FIlterView from "../components/FilterView";
@@ -54,6 +55,8 @@ const SpecialtiesScreen = () => {
     setFiltered(!filtered);
   };
 
+  const styles = useScaledStyles(makeStyles);
+
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
@@ -63,19 +66,9 @@ const SpecialtiesScreen = () => {
           alphabeticalFIlterAction={handleFilter}
           onPress={() => navigateTo("Doctors Screen")}
         />
-
         <ScrollView
           style={styles.scrollView}
-          contentContainerStyle={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            gap: 40,
-            width: "100%",
-            height: "115%",
-            padding: 0,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          contentContainerStyle={styles.contentContainer}
         >
           {filteredList.map((ListItem, index) => (
             <AvatarIcon
@@ -83,14 +76,7 @@ const SpecialtiesScreen = () => {
               title={ListItem.item}
               source={ListItem.source}
               onPress={() => navigateTo(`${ListItem.item} Screen`)}
-              newStyles={{
-                width: 150,
-                height: 150,
-                alignSelf: "center",
-                margin: 0,
-                alignItem: "center",
-                justifyContent: "center",
-              }}
+              newStyles={styles.avatar}
             />
           ))}
         </ScrollView>
@@ -101,13 +87,31 @@ const SpecialtiesScreen = () => {
 
 export default SpecialtiesScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20,
-    alignItems: "center",
-  },
-  scrollView: {
-    width: "100%",
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop: scaleSize(20),
+      alignItems: "center",
+    },
+    scrollView: {
+      width: "100%",
+    },
+    contentContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: scaleSize(40),
+      width: "100%",
+      padding: 0,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    avatar: {
+      width: scaleSize(150),
+      height: scaleSize(150),
+      alignSelf: "center",
+      margin: 0,
+      alignItem: "center",
+      justifyContent: "center",
+    },
+  });

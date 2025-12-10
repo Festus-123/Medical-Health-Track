@@ -5,24 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import ScreenWrapper from "../components/ScreenWrapper";
 import Profile from "../components/Profile";
-
-const ActiveBtn = ({ title, onPress }) => {
-  return (
-    <TouchableOpacity style={styles.activeBtnArea} onPress={onPress}>
-      <LinearGradient colors={["#33E4DB", "#00BBD3"]} style={styles.activeBtn}>
-        <Text style={{ color: "#ffffff", fontSize: 20 }}>{title}</Text>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
-};
-
-const InActiveBtn = ({ title, onPress }) => {
-  return (
-    <TouchableOpacity style={styles.InactiveBtnArea} onPress={onPress}>
-      <Text style={{ color: "#000000", fontSize: 20 }}>{title}</Text>
-    </TouchableOpacity>
-  );
-};
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const help = [
   ["Customer Service", "Website", "Whatsapp", "Facebook", "Instagram"],
@@ -40,6 +23,28 @@ const lists = help[0].map((title, i) => {
 const HelpScreen = () => {
   const [current, setCurrent] = useState("FAQs");
   const [active, setActive] = useState();
+  const styles = useScaledStyles(makeStyles);
+
+  const ActiveBtn = ({ title, onPress }) => {
+    return (
+      <TouchableOpacity style={styles.activeBtnArea} onPress={onPress}>
+        <LinearGradient
+          colors={["#33E4DB", "#00BBD3"]}
+          style={styles.activeBtn}
+        >
+          <Text style={{ color: "#ffffff", fontSize: 20 }}>{title}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+    );
+  };
+
+  const InActiveBtn = ({ title, onPress }) => {
+    return (
+      <TouchableOpacity style={styles.InactiveBtnArea} onPress={onPress}>
+        <Text style={{ color: "#000000", fontSize: 20 }}>{title}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   const onClickEvent1 = () => {
     setCurrent("FAQs");
@@ -53,16 +58,7 @@ const HelpScreen = () => {
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-            width: "90%",
-            marginTop: 20,
-            marginBottom: 15,
-          }}
-        >
+        <View style={styles.topRow}>
           {current === "FAQs" ? (
             active ? (
               <ActiveBtn title={"FAQs"} />
@@ -102,25 +98,37 @@ const HelpScreen = () => {
 
 export default HelpScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  activeBtn: {
-    paddingHorizontal: 50,
-    paddingVertical: 15,
-    borderRadius: 25,
-  },
-  InactiveBtnArea: {
-    backgroundColor: "#ffffff",
-    paddingVertical: 15,
-    paddingHorizontal: 50,
-    borderWidth: 1,
-    borderColor: "#00bad3aa",
-    borderRadius: 25,
-  },
-  contactView: {
-    gap: 20,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+    },
+    topRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-evenly",
+      width: "90%",
+      marginTop: scaleSize(20),
+      marginBottom: scaleSize(15),
+    },
+    activeBtn: {
+      paddingHorizontal: scaleSize(50),
+      paddingVertical: scaleSize(15),
+      borderRadius: scaleSize(25),
+    },
+    activeBtnArea: {
+      // wrapper area for active button if needed
+    },
+    InactiveBtnArea: {
+      backgroundColor: "#ffffff",
+      paddingVertical: scaleSize(15),
+      paddingHorizontal: scaleSize(50),
+      borderWidth: 1,
+      borderColor: "#00bad3aa",
+      borderRadius: scaleSize(25),
+    },
+    contactView: {
+      gap: scaleSize(20),
+    },
+  });

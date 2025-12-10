@@ -1,44 +1,44 @@
-import React from 'react'
-import {View, StyleSheet, Text} from "react-native"
-import { LinearGradient } from 'expo-linear-gradient'
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
-import { imageSource } from '../constants/imageSource'
+import { imageSource } from "../constants/imageSource";
 
-import Logo from '../components/Logo'
+import Logo from "../components/Logo";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const SplashScreen = () => {
+  const styles = useScaledStyles(makeStyles);
+
   return (
-    <LinearGradient 
-      colors={['#33E4DB' ,'#00BBD3']}
-      style={styles.container}>
-        <Logo source= {imageSource.whiteLogo} />
-        <Text 
-          style={styles.strongTxt}> Health
-            <Text 
-              style={styles.lightTxt}>Track
-            </Text>
-          </Text>
-
+    <LinearGradient colors={["#33E4DB", "#00BBD3"]} style={styles.container}>
+      <Logo source={imageSource.whiteLogo} />
+      <Text style={styles.strongTxt}>
+        {" "}
+        Health
+        <Text style={styles.lightTxt}>Track</Text>
+      </Text>
     </LinearGradient>
-  )
-}
+  );
+};
 
-export default SplashScreen
+export default SplashScreen;
 
-const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
+const makeStyles = ({ scaleSize, scaleFont }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
     },
-    strongTxt:{
+    strongTxt: {
       fontWeight: "900",
-      fontSize: 50,
+      fontSize: scaleFont(50),
       color: "white",
-      gap: 10,
-      marginTop: 20,
+      gap: scaleSize(10),
+      marginTop: scaleSize(20),
     },
-    lightTxt:{
+    lightTxt: {
       fontWeight: "normal",
-    }
-})
+    },
+  });

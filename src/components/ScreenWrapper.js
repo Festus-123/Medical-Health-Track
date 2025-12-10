@@ -2,15 +2,22 @@ import React from "react";
 import { SafeAreaView, View, ScrollView, StyleSheet } from "react-native";
 import { useResponsive } from "../utils/responsive";
 
-const ScreenWrapper = ({ children, scroll = false, noPadding = false, style }) => {
+const ScreenWrapper = ({
+  children,
+  scroll = false,
+  noPadding = false,
+  style,
+}) => {
   const { scaleSize } = useResponsive();
-  const padding = noPadding ? 0 : Math.round(16 * scaleSize);
+  const padding = noPadding ? 0 : scaleSize(16);
   const Container = scroll ? ScrollView : View;
 
   if (scroll) {
     return (
       <SafeAreaView style={styles.safe}>
-        <Container contentContainerStyle={[styles.container, { padding }, style]}>
+        <Container
+          contentContainerStyle={[styles.container, { padding }, style]}
+        >
           {children}
         </Container>
       </SafeAreaView>
@@ -19,7 +26,9 @@ const ScreenWrapper = ({ children, scroll = false, noPadding = false, style }) =
 
   return (
     <SafeAreaView style={styles.safe}>
-      <Container style={[styles.container, { padding }, style]}>{children}</Container>
+      <Container style={[styles.container, { padding }, style]}>
+        {children}
+      </Container>
     </SafeAreaView>
   );
 };

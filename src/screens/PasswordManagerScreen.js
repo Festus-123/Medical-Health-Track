@@ -6,8 +6,11 @@ import ButtonComponent from "../components/Button";
 import Link from "../components/Link";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const PasswordManagerScreen = () => {
+  const styles = useScaledStyles(makeStyles);
+
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
@@ -22,11 +25,7 @@ const PasswordManagerScreen = () => {
         <Link
           title={"Forget Password?"}
           // onPress={() => navigateTo('Reset Password')}
-          newArea={{
-            marginBottom: 40,
-            marginLeft: 280,
-            marginTop: 5,
-          }}
+          newArea={styles.forgetLink}
         />
 
         <Input
@@ -49,9 +48,7 @@ const PasswordManagerScreen = () => {
           title={"Change Password"}
           BtnStyleLeft={"#33e4db"}
           BtnStyleRight={"#00bbd3"}
-          newStyles={{
-            marginTop: 200,
-          }}
+          newStyles={styles.changeBtn}
         />
       </View>
     </ScreenWrapper>
@@ -60,11 +57,20 @@ const PasswordManagerScreen = () => {
 
 export default PasswordManagerScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 20,
-    gap: 10,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      marginTop: scaleSize(20),
+      gap: scaleSize(10),
+    },
+    forgetLink: {
+      marginBottom: scaleSize(40),
+      marginLeft: "auto",
+      marginTop: scaleSize(5),
+    },
+    changeBtn: {
+      marginTop: scaleSize(200),
+    },
+  });

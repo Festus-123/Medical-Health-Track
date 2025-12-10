@@ -2,10 +2,13 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { useNavigateTo } from "../utils/navigateTo";
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 import Profile from "../components/Profile";
 
 const SettingsScreen = () => {
   const navigateTo = useNavigateTo();
+
+  const styles = useScaledStyles(makeStyles);
 
   return (
     <ScreenWrapper scroll>
@@ -28,12 +31,13 @@ const SettingsScreen = () => {
 
 export default SettingsScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 20,
-    gap: 20,
-    padding: 10,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      marginTop: scaleSize(20),
+      gap: scaleSize(20),
+      padding: scaleSize(10),
+    },
+  });

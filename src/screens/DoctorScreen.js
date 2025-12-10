@@ -17,6 +17,7 @@ import ScreenWrapper from "../components/ScreenWrapper";
 import DoctorsProfileView from "../components/DoctorsProfileView";
 import FIlterView from "../components/FilterView";
 import AvatarIcon from "../components/AvatarIcon";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const Doctors = [
   "Cardiology",
@@ -96,6 +97,8 @@ const DoctorScreen = () => {
     setFilter(!filterd);
   };
 
+  const styles = useScaledStyles(makeStyles);
+
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
@@ -134,7 +137,7 @@ const DoctorScreen = () => {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{
-            width: 380,
+            width: "100%",
             alignItems: "center",
             flexGrow: 1,
             paddingBottom: 100,
@@ -157,25 +160,26 @@ const DoctorScreen = () => {
 
 export default DoctorScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  gradient: {
-    width: 100,
-    height: 90,
-    margin: 5,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  ScrollViewHorizontal: {
-    width: 370,
-    height: 150,
-    borderBottomWidth: 1,
-    borderColor: "#00bad336",
-    marginTop: 10,
-    paddingBottom: 10,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+    },
+    gradient: {
+      width: scaleSize(100),
+      height: scaleSize(90),
+      margin: scaleSize(5),
+      borderRadius: scaleSize(20),
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    ScrollViewHorizontal: {
+      width: "100%",
+      height: scaleSize(150),
+      borderBottomWidth: 1,
+      borderColor: "#00bad336",
+      marginTop: scaleSize(10),
+      paddingBottom: scaleSize(10),
+    },
+  });

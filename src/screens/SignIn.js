@@ -9,6 +9,7 @@ import ButtonComponent from "../components/Button";
 import Link from "../components/Link";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const SignIn = () => {
   const navigateTo = useNavigateTo();
@@ -69,6 +70,8 @@ const SignIn = () => {
   const reviewPassword = () => {
     setState(!state);
   };
+
+  const styles = useScaledStyles(makeStyles);
 
   return (
     <ScreenWrapper scroll>
@@ -189,22 +192,22 @@ const SignIn = () => {
 
 export default SignIn;
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 30,
-    // flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  siteAreaView: {
-    flexDirection: "row",
-    gap: 20,
-  },
-  welcomeAreView: {
-    marginBottom: 40,
-  },
-  siteAndSuggestionAreaView: {
-    marginTop: 0,
-    alignItems: "center",
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      marginTop: scaleSize(30),
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    siteAreaView: {
+      flexDirection: "row",
+      gap: scaleSize(20),
+    },
+    welcomeAreView: {
+      marginBottom: scaleSize(40),
+    },
+    siteAndSuggestionAreaView: {
+      marginTop: 0,
+      alignItems: "center",
+    },
+  });

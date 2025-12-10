@@ -1,9 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 
 const DoctorInfoScreen = ({ route }) => {
   const { doctorName, doctorTitle, doctorImg } = route.params;
+
+  const styles = useScaledStyles(makeStyles);
 
   return (
     <ScreenWrapper scroll>
@@ -118,20 +121,18 @@ const DoctorInfoScreen = ({ route }) => {
 
 export default DoctorInfoScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  focusView: {
-    width: 320,
-    padding: 15,
-    margin: 20,
-    marginTop: 40,
-    backgroundColor: "#E9F6FE",
-    borderRadius: 25,
-    // lineHeight: 30,
-    // borderBottomWidth: 1,
-    // borderColor: "#00BBD3"
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+    },
+    focusView: {
+      width: "90%",
+      padding: scaleSize(15),
+      margin: scaleSize(20),
+      marginTop: scaleSize(40),
+      backgroundColor: "#E9F6FE",
+      borderRadius: scaleSize(25),
+    },
+  });

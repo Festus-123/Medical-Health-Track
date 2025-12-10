@@ -9,9 +9,14 @@ import ScrollEffect from "../components/ScrollEffect";
 import ButtonComponent from "../components/Button";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
+import { useResponsive } from "../utils/responsive";
 
 const OnBoardingScreen3 = ({ page }) => {
   const navigateReplace = useReplaceNavigation();
+  const styles = useScaledStyles(makeStyles);
+  const { scaleSize } = useResponsive();
+
   return (
     <ScreenWrapper scroll>
       <View style={[styles.container, page]}>
@@ -55,11 +60,11 @@ const OnBoardingScreen3 = ({ page }) => {
 
         <GradientLook
           gradient={{
-            width: 400,
-            height: 400,
+            width: scaleSize ? scaleSize(400) : 400,
+            height: scaleSize ? scaleSize(400) : 400,
             position: "absolute",
-            bottom: 45,
-            borderRadius: 200,
+            bottom: scaleSize ? scaleSize(45) : 45,
+            borderRadius: scaleSize ? scaleSize(200) : 200,
           }}
         />
 
@@ -79,37 +84,36 @@ const OnBoardingScreen3 = ({ page }) => {
 
 export default OnBoardingScreen3;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-  },
-  Svg: {
-    marginBottom: 50,
-    position: "relative",
-    // top: "-10%"
-  },
-  strongText: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "#13CAD6",
-    marginBottom: 30,
-    width: 300,
-    textAlign: "center",
-  },
-  longText: {
-    textAlign: "center",
-    marginHorizontal: 10,
-    // marginTop: 40,
-    marginBottom: 50,
-    fontSize: 12,
-    lineHeight: 25,
-  },
-  scrollView: {
-    flexDirection: "row",
-    gap: 10,
-    marginBottom: 50,
-  },
-});
+const makeStyles = ({ scaleSize, scaleFont }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#fff",
+    },
+    Svg: {
+      marginBottom: scaleSize(50),
+      position: "relative",
+    },
+    strongText: {
+      fontSize: scaleFont(40),
+      fontWeight: "bold",
+      color: "#13CAD6",
+      marginBottom: scaleSize(30),
+      width: "90%",
+      textAlign: "center",
+    },
+    longText: {
+      textAlign: "center",
+      marginHorizontal: scaleSize(10),
+      marginBottom: scaleSize(50),
+      fontSize: scaleFont(12),
+      lineHeight: scaleFont(25),
+    },
+    scrollView: {
+      flexDirection: "row",
+      gap: scaleSize(10),
+      marginBottom: scaleSize(50),
+    },
+  });

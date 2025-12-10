@@ -3,20 +3,17 @@ import { View, StyleSheet, Text } from "react-native";
 import { useNavigateTo } from "../utils/navigateTo";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 import Input from "../components/input";
 import ButtonComponent from "../components/Button";
 
 const ResetPassword = () => {
+  const styles = useScaledStyles(makeStyles);
+
   return (
     <ScreenWrapper scroll>
       <View style={styles.container}>
-        <Text
-          style={{
-            width: 380,
-            marginTop: 20,
-            marginBottom: 50,
-          }}
-        >
+        <Text style={styles.longText}>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio eos
           ipsam possimus enim assumenda nihil nostrum. Similique iste, quia iure
         </Text>
@@ -54,9 +51,15 @@ const ResetPassword = () => {
 
 export default ResetPassword;
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    longText: {
+      width: "100%",
+      marginTop: scaleSize(20),
+      marginBottom: scaleSize(50),
+    },
+  });

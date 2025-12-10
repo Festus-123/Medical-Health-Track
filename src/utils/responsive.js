@@ -9,6 +9,7 @@ export function useResponsive() {
 
   useEffect(() => {
     const handler = ({ window }) => setDims(window);
+    // new RN exposes addEventListener returning subscription; fallback for older RN
     const subscription = Dimensions.addEventListener
       ? Dimensions.addEventListener("change", handler)
       : null;
@@ -24,9 +25,20 @@ export function useResponsive() {
   const scale = width / guidelineBaseWidth;
   const verticalScale = height / guidelineBaseHeight;
 
-  const scaleSize = (size) => Math.round(PixelRatio.roundToNearestPixel(size * scale));
+  const scaleSize = (size) =>
+    Math.round(PixelRatio.roundToNearestPixel(size * scale));
   const scaleFont = (size) =>
-    Math.round(PixelRatio.roundToNearestPixel(size * Math.min(scale, verticalScale)));
+    Math.round(
+      PixelRatio.roundToNearestPixel(size * Math.min(scale, verticalScale))
+    );
 
-  return { width, height, isLandscape, scale, verticalScale, scaleSize, scaleFont };
+  return {
+    width,
+    height,
+    isLandscape,
+    scale,
+    verticalScale,
+    scaleSize,
+    scaleFont,
+  };
 }

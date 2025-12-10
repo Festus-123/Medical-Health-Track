@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { useNavigateTo, useReplaceNavigation } from "../utils/navigateTo";
 
 import ScreenWrapper from "../components/ScreenWrapper";
+import { useScaledStyles } from "../utils/styleHelpers";
 import Profile from "../components/Profile";
 import ConfirmLogOut from "../screens/ConfirmLogOutScreen";
 
@@ -19,8 +20,10 @@ const ProfileScreen = () => {
   //    return <ConfirmLogOut onPress={() => setClick(false)}/>
   // }
 
+  const styles = useScaledStyles(makeStyles);
+
   return (
-    <ScreenWrapper >
+    <ScreenWrapper>
       <View style={styles.container}>
         <View style={click ? styles.inactive : styles.active}></View>
 
@@ -60,29 +63,24 @@ const ProfileScreen = () => {
 
 export default ProfileScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    width: "100%",
-    gap: 20,
-    // padding: 10,
-    // marginTop: 20
-  },
-  active: {
-    display: "none",
-    // flex: 1,
-    // width: "100%",
-    // height: "100%",
-  },
-  inactive: {
-    display: "block",
-    flex: 1,
-    height: "100%",
-    width: "100%",
-    backgroundColor: "#00bad34c",
-
-    position: "absolute",
-    zIndex: 1,
-  },
-});
+const makeStyles = ({ scaleSize }) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      width: "100%",
+      gap: scaleSize(20),
+    },
+    active: {
+      display: "none",
+    },
+    inactive: {
+      display: "block",
+      flex: 1,
+      height: "100%",
+      width: "100%",
+      backgroundColor: "#00bad34c",
+      position: "absolute",
+      zIndex: 1,
+    },
+  });
