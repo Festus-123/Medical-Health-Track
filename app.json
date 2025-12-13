@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "travel",
-    "slug": "travel",
+    "name": "Health-track",
+    "slug": "Health-Track",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "",
@@ -13,7 +13,11 @@
       "backgroundColor": "#0033db"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "health-track",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +29,11 @@
     },
     "web": {
       "favicon": "./src/assets/used-assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c88dee1e-fb8c-4e5c-9f06-2c33daf3ae0f"
+      }
     }
   }
 }

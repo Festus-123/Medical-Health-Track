@@ -1,0 +1,40 @@
+name: Build Preview APK
+
+on:
+  push:
+    branches: [ main ]  # Change 'main' to your working branch if different (e.g., 'develop')
+
+jobs:
+  build:
+    name: Build APK on EAS
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code from the repository
+      - name: 🏗 Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js environment
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Use your project's Node.js version
+
+      # 3. Setup Expo CLI and EAS using your secret token
+      - name: 🔐 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      # 4. Install project dependencies
+      - name: 📦 Install dependencies
+        run: npm install  # Use 'yarn install' or 'pnpm install' if you use them
+
+      # 5. Run the EAS Build command for a Preview APK
+      - name: 🚀 Build Preview APK on EAS
+        run: |
+          eas build --platform android \
+                    --profile preview \
+                    --non-interactive \
+                    --no-wait
